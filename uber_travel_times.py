@@ -5,7 +5,7 @@ import pandas as pd
 project_folder = r'D:\GitHub\Projects\Uber_Movement_Travel_Times'
 os.chdir(project_folder)
 
-data_files_loc = os.path.join(project_folder, 'Data')
+data_files_loc = os.path.join(project_folder, 'sample_data')
 
 
 # Merge the files into one common pandas DataFrame
