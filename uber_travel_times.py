@@ -8,6 +8,8 @@ os.chdir(project_folder)
 data_files_loc = os.path.join(project_folder, 'sample_data')
 
 
+# Sample data
+
 # Merge the files into one common pandas DataFrame
 df_merged = pd.DataFrame()
 sum_rows = 0
@@ -19,3 +21,14 @@ for file in os.listdir(data_files_loc):
     sum_rows += df_new.shape[0]
     df_merged = pd.concat([df_merged, df_new], sort=False, ignore_index=True)
 
+
+
+# London data
+    
+  
+    
+london_file_loc = os.path.join(project_folder, 'london_data')
+london_filename = 'london-lsoa-2020-1-All-HourlyAggregate.csv'
+
+london_df = pd.read_csv(os.path.join(london_file_loc, london_filename),
+                       header=[0])
