@@ -1,6 +1,9 @@
 
 import os
+import json
 import pandas as pd
+
+import utilities.custom_functions as cf
 
 project_folder = r'D:\GitHub\Projects\Uber_Movement_Travel_Times'
 os.chdir(project_folder)
@@ -24,11 +27,22 @@ for file in os.listdir(data_files_loc):
 
 
 # London data
-    
-  
-    
+
 london_file_loc = os.path.join(project_folder, 'london_data')
 london_filename = 'london-lsoa-2020-1-All-HourlyAggregate.csv'
 
 london_df = pd.read_csv(os.path.join(london_file_loc, london_filename),
-                       header=[0])
+                       header=[0], nrows=1000000)
+
+
+# json file
+json_filename = 'london_lsoa.json'
+
+location_info_ls = []
+with open(json_filename) as f:
+    data = json.load(f)
+    for loc_dict in data['features']:
+        location_info_ls.append(cf.capture_data_from_json(loc_dict))
+
+
+
