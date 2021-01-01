@@ -3,10 +3,10 @@ import os
 import json
 import pandas as pd
 
-import utilities.custom_functions as cf
-
-project_folder = r'D:\GitHub\Projects\Uber_Movement_Travel_Times'
+project_folder = r'/Users/georgiosspyrou/Desktop/GitHub/Projects/Uber_Travel_Times/Uber_Travel_Times'
 os.chdir(project_folder)
+
+import utilities.custom_functions as cf
 
 data_files_loc = os.path.join(project_folder, 'sample_data')
 
@@ -43,6 +43,11 @@ with open(json_filename) as f:
     data = json.load(f)
     for loc_dict in data['features']:
         location_info_ls.append(cf.capture_data_from_json(loc_dict))
+
+col_names = ['movement_id', 'display_name', 'la_name', 'coordinates']
+location_data_df = pd.DataFrame.from_records(location_info_ls,
+                                             columns=col_names)
+
 
 
 
