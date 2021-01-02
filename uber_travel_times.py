@@ -54,3 +54,15 @@ df_enhanced = pd.merge(london_df, location_data_df, how='inner',
                        left_on=['sourceid'],
                        right_on=['movement_id'])
 
+df_enhanced = df_enhanced.merge(location_data_df, how='inner',
+                                left_on=['dstid'], right_on=['movement_id'])
+
+col_names_update = {'display_name_x': 'source_name', 
+                    'display_name_y': 'destination_name',
+                    'la_name_x': 'source_la_name',
+                    'la_name_y': 'destination_la_name',
+                    'coordinates_x': 'source_coordinates',
+                    'coordinates_y': 'destination_coordinates'}
+
+df_enhanced.rename(columns=col_names_update, inplace=True)
+df_enhanced.drop(columns=['movement_id_x', 'movement_id_y'], inplace=True)
