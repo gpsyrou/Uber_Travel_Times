@@ -49,7 +49,8 @@ location_data_df = pd.DataFrame.from_records(location_info_ls,
                                              columns=col_names)
 
 
-
+# Merge the two datasets to get one combined df with all info for source
+# and destionation
 df_enhanced = pd.merge(london_df, location_data_df, how='inner',
                        left_on=['sourceid'],
                        right_on=['movement_id'])
@@ -66,3 +67,14 @@ col_names_update = {'display_name_x': 'source_name',
 
 df_enhanced.rename(columns=col_names_update, inplace=True)
 df_enhanced.drop(columns=['movement_id_x', 'movement_id_y'], inplace=True)
+
+
+
+
+
+
+
+
+
+
+
