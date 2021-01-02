@@ -42,7 +42,7 @@ location_info_ls = []
 with open(json_filename) as f:
     data = json.load(f)
     for loc_dict in data['features']:
-        location_info_ls.append(cf.capture_data_from_json(loc_dict))
+        location_info_ls.append(cf.retrieve_data_from_json(loc_dict))
 
 col_names = ['movement_id', 'display_name', 'la_name', 'coordinates']
 location_data_df = pd.DataFrame.from_records(location_info_ls,
@@ -68,10 +68,8 @@ col_names_update = {'display_name_x': 'source_name',
 df_enhanced.rename(columns=col_names_update, inplace=True)
 df_enhanced.drop(columns=['movement_id_x', 'movement_id_y'], inplace=True)
 
-
-
-
-
+# are the combinations unique?
+df_enhanced.groupby(['sourceid','dstid']).size()
 
 
 

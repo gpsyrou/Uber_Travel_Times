@@ -1,9 +1,18 @@
 import numpy as np
 
-def capture_data_from_json(input_dict: dict) -> list:
+def retrieve_data_from_json(input_dict: dict) -> list:
     '''
-    Given a dictionary from a json file, retrieve only the relevant information
-    of interest
+    Parameters
+    ----------
+    input_dict : dict
+        The json file contains irrelevant information. Pick only the relevant
+        columns and cast them to the appropriate data type.
+
+    Returns
+    -------
+    list
+        A list of the columns of interest.
+
     '''
     movement_id = np.int64(input_dict['properties']['MOVEMENT_ID'])
     display_name = str(input_dict['properties']['DISPLAY_NAME'])
