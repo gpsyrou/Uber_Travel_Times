@@ -10,7 +10,7 @@ import utilities.custom_functions as cf
 
 data_files_loc = os.path.join(project_folder, 'sample_data')
 
-
+'''
 # Sample data
 
 # Merge the files into one common pandas DataFrame
@@ -24,7 +24,7 @@ for file in os.listdir(data_files_loc):
     sum_rows += df_new.shape[0]
     df_merged = pd.concat([df_merged, df_new], sort=False, ignore_index=True)
 
-
+'''
 
 # London data
 
@@ -50,4 +50,7 @@ location_data_df = pd.DataFrame.from_records(location_info_ls,
 
 
 
+df_enhanced = pd.merge(london_df, location_data_df, how='inner',
+                       left_on=['sourceid'],
+                       right_on=['movement_id'])
 
