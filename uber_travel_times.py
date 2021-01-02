@@ -32,7 +32,7 @@ london_file_loc = os.path.join(project_folder, 'london_data')
 london_filename = 'london-lsoa-2020-1-All-HourlyAggregate.csv'
 
 london_df = pd.read_csv(os.path.join(london_file_loc, london_filename),
-                       header=[0], nrows=1000000)
+                       header=[0], nrows=10000)
 
 
 # json file
