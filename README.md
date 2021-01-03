@@ -8,6 +8,6 @@ In the first version of the project, which is mostly exploratory, we will use on
 
 ## Useful Links
 
-    1. https://data.world/rmiller107/travel-time-uber-movement
-    2. https://movement.uber.com/?lang=en-GB
+1. https://data.world/rmiller107/travel-time-uber-movement
+2. https://movement.uber.com/?lang=en-GB
 
