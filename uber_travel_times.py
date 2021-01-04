@@ -3,7 +3,7 @@ import os
 import json
 import pandas as pd
 
-project_folder = r'/Users/georgiosspyrou/Desktop/GitHub/Projects/Uber_Travel_Times/Uber_Travel_Times'
+project_folder = r'D:\GitHub\Projects\Uber_Movement_Travel_Times'
 os.chdir(project_folder)
 
 import utilities.custom_functions as cf
@@ -58,14 +58,14 @@ df_enhanced = pd.merge(london_df, location_data_df, how='inner',
 df_enhanced = df_enhanced.merge(location_data_df, how='inner',
                                 left_on=['dstid'], right_on=['movement_id'])
 
-col_names_update = {'display_name_x': 'source_name', 
+col_names_updated = {'display_name_x': 'source_name', 
                     'display_name_y': 'destination_name',
                     'la_name_x': 'source_la_name',
                     'la_name_y': 'destination_la_name',
                     'coordinates_x': 'source_coordinates',
                     'coordinates_y': 'destination_coordinates'}
 
-df_enhanced.rename(columns=col_names_update, inplace=True)
+df_enhanced.rename(columns=col_names_updated, inplace=True)
 df_enhanced.drop(columns=['movement_id_x', 'movement_id_y'], inplace=True)
 
 # are the combinations unique?
