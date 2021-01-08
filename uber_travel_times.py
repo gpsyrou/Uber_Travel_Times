@@ -3,7 +3,12 @@ import os
 import json
 import pandas as pd
 
-project_folder = r'/Users/georgiosspyrou/Desktop/GitHub/Projects/Uber_Travel_Times/Uber_Travel_Times'
+json_loc = r'D:\GitHub\Projects\Uber_Movement_Travel_Times\config.json'
+
+with open(json_loc) as json_file:
+    config = json.load(json_file)
+
+project_folder = config["project_dir"]
 os.chdir(project_folder)
 
 import utilities.custom_functions as cf
