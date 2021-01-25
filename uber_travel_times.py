@@ -10,22 +10,6 @@ import utilities.custom_functions as cf
 
 data_files_loc = os.path.join(project_folder, 'sample_data')
 
-'''
-# Sample data
-
-# Merge the files into one common pandas DataFrame
-df_merged = pd.DataFrame()
-sum_rows = 0
-for file in os.listdir(data_files_loc):
-    # Pick the country from the file name
-    location_name = file.split('_')[2].replace('.csv', '')
-    df_new = pd.read_csv(os.path.join(data_files_loc, file), header=[0])
-    df_new['Location'] = location_name.upper()
-    sum_rows += df_new.shape[0]
-    df_merged = pd.concat([df_merged, df_new], sort=False, ignore_index=True)
-
-'''
-
 # London data
 
 london_file_loc = os.path.join(project_folder, 'london_data')
@@ -74,5 +58,32 @@ df_enhanced.groupby(['sourceid','dstid']).size()
 
 
 
+class Trip:
+    '''
+    Class corresponding to a specific trip and it's statistics. A trip has
+    a starting and an end point. Between these two points the gps is sending 
+    a different amount of pings per zone.
+    
+    Each ping is described in the format [latitude, longitude].
+    '''
+    
+    def __init__(self, series):
+        self.series = series
+        
+    def number_of_gps_pings(self, geom_point):
+        num_gps_pings = len(self.series[geom_point][0][0])
+        return num_gps_pings
+    
+    def split_pings_to_list(self, geom_point):
+        gps_pings = [x for x in self.series[geom_point][0][0]]
+        return gps_pings
+    
+
+    
+    
+x = Trip(df_enhanced.iloc[0])
+    
+    
+    
 
 
