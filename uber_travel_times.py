@@ -1,6 +1,7 @@
 
 import os
 import json
+import List
 import pandas as pd
 
 project_folder = r'D:\GitHub\Projects\Uber_Movement_Travel_Times'
@@ -67,14 +68,14 @@ class Trip:
     Each ping is described in the format [latitude, longitude].
     '''
     
-    def __init__(self, series):
+    def __init__(self, series: pd.core.series.Series):
         self.series = series
         
-    def number_of_gps_pings(self, geom_point):
+    def number_of_gps_pings(self, geom_point: str) -> int:
         num_gps_pings = len(self.series[geom_point][0][0])
         return num_gps_pings
     
-    def split_pings_to_list(self, geom_point):
+    def split_pings_to_list(self, geom_point: str) -> list:
         gps_pings = [x for x in self.series[geom_point][0][0]]
         return gps_pings
     
@@ -82,8 +83,8 @@ class Trip:
     
     
 x = Trip(df_enhanced.iloc[0])
-    
-    
+x.number_of_gps_pings(geom_point='source_coordinates') # 40
+x.number_of_gps_pings(geom_point='destination_coordinates') # 60
     
 
 
