@@ -5,20 +5,17 @@ import List
 import pandas as pd
 
 project_folder = r'D:\GitHub\Projects\Uber_Movement_Travel_Times'
-os.chdir(project_folder)
 
 import utilities.custom_functions as cf
 
 data_files_loc = os.path.join(project_folder, 'sample_data')
 
 # London data
-
 london_file_loc = os.path.join(project_folder, 'london_data')
 london_filename = 'london-lsoa-2020-1-All-HourlyAggregate.csv'
 
 london_df = pd.read_csv(os.path.join(london_file_loc, london_filename),
                        header=[0], nrows=10000)
-
 
 # json file
 json_filename = 'london_lsoa.json'
@@ -32,7 +29,6 @@ with open(json_filename) as f:
 col_names = ['movement_id', 'display_name', 'la_name', 'coordinates']
 location_data_df = pd.DataFrame.from_records(location_info_ls,
                                              columns=col_names)
-
 
 # Merge the two datasets to get one combined df with all info for source
 # and destionation
@@ -57,8 +53,6 @@ df_enhanced.drop(columns=['movement_id_x', 'movement_id_y'], inplace=True)
 df_enhanced.groupby(['sourceid','dstid']).size()
 
 
-
-
 class Trip:
     '''
     Class corresponding to a specific trip and it's statistics. A trip has
@@ -78,13 +72,7 @@ class Trip:
     def split_pings_to_list(self, geom_point: str) -> list:
         gps_pings = [x for x in self.series[geom_point][0][0]]
         return gps_pings
-    
 
-    
-    
 x = Trip(df_enhanced.iloc[0])
 x.number_of_gps_pings(geom_point='source_coordinates') # 40
 x.number_of_gps_pings(geom_point='destination_coordinates') # 60
-    
-
-
